@@ -73,7 +73,7 @@ pipeline {
   //          steps {
   //           Deploy to Production Environment 
   //              echo 'Deploy to Production Environment...'
-  //              deploy adapters: [tomcat9(credentialsId: 'tomcat/tomcat-9', path: '', url: 'http://172.31.44.167:8080')], contextPath: 'app', war: '**/*.war'
+  //              deploy adapters: [tomcat9(credentialsId: 'tomcat/tomcat-9', path: '', url: 'http://172.31.44.73:8080')], contextPath: 'app', war: '**/*.war'
     //        }
   //          post {
   //              failure {
