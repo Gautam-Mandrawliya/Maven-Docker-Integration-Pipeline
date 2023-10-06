@@ -49,7 +49,8 @@ pipeline {
 		steps {
 		// Build the container image
 			script {
-			dockerImage = docker.build("myapp:${env.BUILD_ID}", "--label \"GIT_COMMIT=${env.GIT_COMMIT}\" .")
+			def dockerUser = "gautamregar"
+			dockerImage = docker.build("${dockerUser}/myapp:${env.BUILD_ID}", "--label \"GIT_COMMIT=${env.GIT_COMMIT}\" .")
 			}
 		// Push the container image to Docker Hub
 			withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
