@@ -45,7 +45,7 @@ pipeline {
             }
         }
 	
-	    stage('Build Container') {
+	    stage('Build DockerImage && PushImageRegistry') {
 		steps {
 		// Build the container image
 			script {
@@ -61,28 +61,34 @@ pipeline {
                         dockerImage.push()
                     }
                 }
-	        }	
+	    }	
         }
     }
-  //      stage('DeployToProd') {
-  //          input {
-  //              message "Should we continue?"
-  //              ok "Yes, we should."
-  //              submitter "alice,bob"
-  //          }
-  //          steps {
-  //           Deploy to Production Environment 
-  //              echo 'Deploy to Production Environment...'
-  //              deploy adapters: [tomcat9(credentialsId: 'tomcat/tomcat-9', path: '', url: 'http://172.31.44.73:8080')], contextPath: 'app', war: '**/*.war'
-    //        }
-  //          post {
-  //              failure {
-  //                  echo "Failed to Production Environment!"
-  //              }
-  //          }
-//        }
-    }
-    post {
+    
+//	stage('Deploy to DockerSwarmCluster') {
+//	    agent none
+//          input {
+//        	message "Should we continue?"
+//          	ok "Yes, we should."
+//          	submitter "alice,bob"
+//          }
+//         steps {
+	   // Connect to the first remote Docker host
+//	   docker.withServer ('tcp://192.168.10.100:8080', 'docker1-certs') {
+	   // Pull and run the container image from Docker Hub as a swarm service with 3 replicas
+//	   script {
+//		dockerContainer = docker.image("gautamregar/myapp:${env.BUILD_ID}").run("--mode replicated --replicas 3 -p 8000:8080")
+//	     }
+//	  }
+//    	}
+//    	post {
+//         failure {
+//             echo "Failed to Production Environment!"
+//           }
+//       }
+// }
+   
+   post {
         success {
             echo "Success!"
         }
