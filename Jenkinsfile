@@ -74,7 +74,8 @@ pipeline {
 //          }
 //         steps {
 	   // Connect to the first remote Docker host
-//	   docker.withServer ('tcp://192.168.10.100:8080', 'docker1-certs') {
+//	   #######[docker.withServer ('tcp://192.168.10.100:2375', 'docker1-certs')]#####
+//	   docker.withServer ('tcp://192.168.10.100:2375') {
 	   // Pull and run the container image from Docker Hub as a swarm service with 3 replicas
 //	   script {
 //		dockerContainer = docker.image("gautamregar/myapp:${env.BUILD_ID}").run("--mode replicated --replicas 3 -p 8000:8080")
