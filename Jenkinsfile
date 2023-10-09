@@ -12,6 +12,7 @@ pipeline {
                 echo "Testing..."
                 sh 'mvn test'
             }
+	}
             post {
                 failure {
                     echo "Failed to Testing Stage!!"
@@ -45,17 +46,17 @@ pipeline {
             }
         }
 	
-	    stage('Build DockerImage && PushImageRegistry') {
-		steps {
-		// Build the container image
-			script {
-			def dockerUser = "gautamregar"
-			dockerImage = docker.build("${dockerUser}/myapp:${env.BUILD_ID}", "--label \"GIT_COMMIT=${env.GIT_COMMIT}\" .")
-			}
+	stage('Build DockerImage && PushImageRegistry') {
+	   steps {
+	   // Build the container image
+		script {
+		   def dockerUser = "gautamregar"
+		   dockerImage = docker.build("${dockerUser}/myapp:${env.BUILD_ID}", "--label \"GIT_COMMIT=${env.GIT_COMMIT}\" .")
+		}
 		// Push the container image to Docker Hub
-			withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
-            {
-            script {
+		withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
+            	{
+            	script {
                     docker.withRegistry('https://registry.hub.docker.com', 'DockerHub')
                     {
                         dockerImage.push()
