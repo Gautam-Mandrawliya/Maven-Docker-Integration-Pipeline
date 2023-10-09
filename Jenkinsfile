@@ -12,7 +12,6 @@ pipeline {
                 echo "Testing..."
                 sh 'mvn test'
             }
-	}
             post {
                 failure {
                     echo "Failed to Testing Stage!!"
@@ -93,12 +92,14 @@ pipeline {
    post {
         success {
             echo "Success!"
-        }
+          }
         failure {
             echo "Failed!"
-        }
+          }
        aborted {
            echo "Aborted!"
-       } 
+         } 
+      }
     }
 }
+	
