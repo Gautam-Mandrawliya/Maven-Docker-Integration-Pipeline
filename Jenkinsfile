@@ -88,7 +88,8 @@ pipeline {
 //           }
 //       }
 // }
-   
+    }
+	    
    post {
         success {
             echo "Success!"
@@ -100,6 +101,5 @@ pipeline {
            echo "Aborted!"
          } 
       }
-    }
 }
 	
