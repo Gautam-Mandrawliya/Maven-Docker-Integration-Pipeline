@@ -36,7 +36,7 @@ pipeline {
             steps {
             // Deploy war file in container
                 echo 'Deploy to Testing Environment...'
-                deploy adapters: [tomcat9(credentialsId: 'tomcat/tomcat-9', path: '', url: 'http://172.31.33.144:8080')], contextPath: 'app', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat-9', path: '', url: 'http://172.31.36.86:8080')], contextPath: 'app', war: '**/*.war'
             }
             post {
                 failure {
